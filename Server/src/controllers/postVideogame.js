@@ -3,7 +3,7 @@ const { Videogame, Genre } = require("../db");
 const postVideogame = async (
   name,
   description,
-  plataforms,
+  platforms,
   background_image,
   released,
   rating,
@@ -13,7 +13,7 @@ const postVideogame = async (
     const newVideogame = await Videogame.create({
       name,
       description,
-      plataforms,
+      platforms,
       background_image,
       released,
       rating,

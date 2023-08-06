@@ -20,7 +20,7 @@ router.post("/videogames", async (req, res) => {
     const {
       name,
       description,
-      plataforms,
+      platforms,
       background_image,
       released,
       rating,
@@ -30,7 +30,7 @@ router.post("/videogames", async (req, res) => {
     if (
       !name ||
       !description ||
-      !plataforms ||
+      !platforms ||
       !background_image ||
       !released ||
       !rating ||
@@ -42,7 +42,7 @@ router.post("/videogames", async (req, res) => {
     await postVideogame(
       name,
       description,
-      plataforms,
+      platforms,
       background_image,
       released,
       rating,
