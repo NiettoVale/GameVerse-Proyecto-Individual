@@ -1,0 +1,18 @@
+body {
+  background-color: #ffc994;
+}
+
+hr {
+  border: black solid 2px;
+}
+
+.contenedorFiltros {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #9acd32;
+}
+
+.contenedorFiltros button {
+  margin: 0 10px;
+}

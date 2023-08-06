@@ -1,0 +1,28 @@
+.searchInput {
+  background-color: #f03268;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  width: 450px;
+}
+
+.searchInput::placeholder {
+  color: #000000;
+}
+
+.searchButton {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-left: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #ffc994;
+  color: #000000;
+}

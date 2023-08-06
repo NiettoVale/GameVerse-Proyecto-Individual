@@ -1,0 +1,51 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #211c33;
+  color: #fff;
+  width: 500px;
+  height: 580px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow-y: scroll;
+  text-align: justify;
+}
+
+.button {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background-color: #990069;
+}
+
+.attribute {
+  font-weight: bold;
+}
+
+.attributesName {
+  color: #ed2860;
+}
+
+.image {
+  border-radius: 5px;
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+h3 {
+  color: #9acd32;
+}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
-import Landing from "./views/landing/Landing";
-import Home from "./views/home/Home";
+import Landing from "./views/Landing/Landing";
+import Home from "./views/Home/Home";
 import Detail from "./components/detail/Detail";
-import VideogameDB from "./views/videogameDB/VideogameDB";
-import Searchgames from "./views/searchgames/Searchgames";
+import VideogameDB from "./views/VideogameDB/VideogameDB";
+import Form from "./views/Form/Form";
 
 function App() {
   const [videogames, setVideogames] = useState([]);
@@ -24,15 +24,14 @@ function App() {
   useEffect(() => {
     obtenerVideojuegos();
   }, [obtenerVideojuegos]);
-
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home videogames={videogames} />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/createVideogames" element={<VideogameDB />} />
-        <Route path="/searchgames" element={<Searchgames />} />
       </Routes>
     </div>
   );

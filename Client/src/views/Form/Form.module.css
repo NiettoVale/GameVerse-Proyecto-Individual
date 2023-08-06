@@ -1,0 +1,68 @@
+/* styles.module.css */
+
+/* styles.module.css */
+
+.containerPrincipal {
+  display: flex;
+  justify-content: end; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  min-width: 100vw;
+  min-height: 100vh; /* Ajusta el tamaño mínimo al 100% del alto de la ventana */
+  background-image: url("../../image/fondo-Form.jpg");
+  background-size: cover; /* La imagen se ajustará para cubrir todo el contenedor */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección a columna */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.384);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  margin-right: 80px;
+  padding: 30px;
+  height: 500px;
+  width: 400px;
+  max-width: 460px;
+}
+
+/* Estilos para el botón Volver */
+.goBackButton {
+  background-color: #ed2860;
+  color: #fff;
+  border: 2px solid black;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+label {
+  font-weight: bold;
+  width: 100%; /* Asegura que la etiqueta ocupe todo el ancho */
+}
+
+input,
+select {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 6px;
+  border: 1px solid #211c33;
+  background-color: #fff;
+}
+
+/* Estilos para el botón de guardar */
+button.createBtn {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Estilos para la opción "Seleccionar género" */
+select option[value=""] {
+  color: #211c33;
+}
