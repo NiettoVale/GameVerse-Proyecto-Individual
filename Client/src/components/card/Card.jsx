@@ -8,7 +8,7 @@ const Card = ({ image, name, genres, id }) => {
       <img src={image} alt={name} />
 
       <p>Nombre: {name}</p>
-      <p className={styles.genres}>Géneros: {genres}</p>
+      <p>Géneros: {genres}</p>
 
       <Link to={`/detail/${id}`}>
         <button className={styles.detailLink}>Ver detalles</button>
@@ -18,6 +18,7 @@ const Card = ({ image, name, genres, id }) => {
 };
 
 export default Card;
+
 // import React from "react";
 // import { Link } from "react-router-dom";
 // import styles from "./Card.module.css";

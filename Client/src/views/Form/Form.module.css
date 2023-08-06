@@ -24,13 +24,14 @@
   backdrop-filter: blur(5px);
   margin-right: 80px;
   padding: 30px;
-  height: 500px;
+  height: 560px;
   width: 400px;
   max-width: 460px;
 }
 
 /* Estilos para el botón Volver */
 .goBackButton {
+  /* margin-top: 35px; */
   background-color: #ed2860;
   color: #fff;
   border: 2px solid black;
@@ -59,7 +60,6 @@ button.createBtn {
   border: none;
   padding: 10px 15px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 /* Estilos para la opción "Seleccionar género" */

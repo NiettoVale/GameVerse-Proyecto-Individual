@@ -16,3 +16,12 @@ hr {
 .contenedorFiltros button {
   margin: 0 10px;
 }
+
+.paginado {
+  margin: 0 auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 350px;
+}

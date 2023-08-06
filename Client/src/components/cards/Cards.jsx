@@ -3,11 +3,14 @@ import Card from "../card/Card";
 import styles from "./Cards.module.css";
 
 const Cards = ({ videogames }) => {
+  console.log(videogames[0]);
   return (
     <div className={styles.contenedorCards}>
       {videogames.map(({ background_image, name, genres, id }) => {
-        // Verificar si los géneros están disponibles antes de mostrarlos
-        const genresToShow = genres.map((genre) => genre.name).join(", ");
+        const genresToShow = genres
+          ? genres.map((genre) => genre.name).join(", ")
+          : "Géneros no disponibles";
+
         return (
           <Card
             key={id}

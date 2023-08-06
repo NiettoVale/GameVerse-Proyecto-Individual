@@ -14,40 +14,35 @@ const Detail = () => {
       );
     if (isUUID) {
       axios(`http://localhost:3001/videogames/${id}`).then(({ data }) => {
-        console.log(data.genres);
-        if (data.name) {
-          const dataVideogame = {
-            id: data.id,
-            name: data.name,
-            background_image: data.background_image,
-            platforms: data.platforms,
-            description: data.description,
-            released: data.released,
-            rating: data.rating,
-            genres: data.genres.map((genre) => genre).join(", "),
-          };
-          setVideogame(dataVideogame);
-        }
+        const dataVideogame = {
+          id: data.id,
+          name: data.name,
+          background_image: data.background_image,
+          platforms: data.platforms,
+          description: data.description,
+          released: data.released,
+          rating: data.rating,
+          genres: data.genres.map((genre) => genre).join(", "),
+        };
+        setVideogame(dataVideogame);
       });
     } else {
       axios(
         `https://api.rawg.io/api/games/${id}?key=aeb12d6781774ed69cb910c7ad69b389&dates=2019-09-01,2023-05-30&platforms=18,1,7`
       ).then(({ data }) => {
-        if (data.name) {
-          const dataVideogame = {
-            id: data.id,
-            name: data.name,
-            background_image: data.background_image,
-            platforms: data.platforms
-              .map((platform) => platform.platform.name)
-              .join(", "),
-            description: data.description,
-            released: data.released,
-            rating: data.rating,
-            genres: data.genres.map((genre) => genre.name).join(", "),
-          };
-          setVideogame(dataVideogame);
-        }
+        const dataVideogame = {
+          id: data.id,
+          name: data.name,
+          background_image: data.background_image,
+          platforms: data.platforms
+            .map((platform) => platform.platform.name)
+            .join(", "),
+          description: data.description,
+          released: data.released,
+          rating: data.rating,
+          genres: data.genres.map((genre) => genre.name).join(", "),
+        };
+        setVideogame(dataVideogame);
       });
     }
 
