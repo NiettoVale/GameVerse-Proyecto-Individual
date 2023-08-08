@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
-const Card = ({ image, name, genres, id }) => {
+const Card = ({ image, name, genres, id, rating }) => {
   return (
     <div className={styles.cardContainer}>
       <img src={image} alt={name} />
 
       <p>Nombre: {name}</p>
       <p>Géneros: {genres}</p>
+      <p>Rating: {rating}</p>
 
       <Link to={`/detail/${id}`}>
         <button className={styles.detailLink}>Ver detalles</button>

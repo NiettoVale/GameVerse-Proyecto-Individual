@@ -28,7 +28,7 @@ const Detail = () => {
       });
     } else {
       axios(
-        `https://api.rawg.io/api/games/${id}?key=aeb12d6781774ed69cb910c7ad69b389&dates=2019-09-01,2023-05-30&platforms=18,1,7`
+        `https://api.rawg.io/api/games/${id}?key=c55f5d34232e434f8035276fcdb6303e&dates=2019-09-01,2023-05-30&platforms=18,1,7`
       ).then(({ data }) => {
         const dataVideogame = {
           id: data.id,

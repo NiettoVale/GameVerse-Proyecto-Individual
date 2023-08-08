@@ -5,18 +5,6 @@ body {
 hr {
   border: black solid 2px;
 }
-
-.contenedorFiltros {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  background-color: #9acd32;
-}
-
-.contenedorFiltros button {
-  margin: 0 10px;
-}
-
 .paginado {
   margin: 0 auto;
   margin-top: 12px;
@@ -24,4 +12,81 @@ hr {
   justify-content: space-evenly;
   align-items: center;
   width: 350px;
+}
+
+.btnPaginado {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btnPaginado:hover {
+  background-color: #f03268;
+  color: #000000;
+}
+
+.contenidoCentral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filtrosDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filtrosBtn {
+  background-color: #f2f2f2;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilos para el contenido desplegable */
+.filtrosContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.filtrosDropdown:hover .filtrosContent {
+  display: block;
+}
+
+.filtrosOrdenamiento,
+.filtrosGeneros {
+  padding: 10px;
+}
+
+.filtrosOrdenamiento button,
+.filtrosGeneros button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  text-align: left;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.filtrosOrdenamiento button:hover,
+.filtrosGeneros button:hover {
+  background-color: #ddd;
 }
