@@ -67,16 +67,18 @@ router.get("/genres", async (_req, res) => {
 router.get("/videogames/name", async (req, res) => {
   try {
     const { name } = req.query;
-    console.log(name);
-    const videogames = await searchVideogamesByName(name);
 
-    if (videogames.length === 0) {
-      return res
-        .status(404)
-        .send("No se encontraron videojuegos con esa palabra en el nombre.");
+    if (name !== undefined) {
+      const videogames = await searchVideogamesByName(name);
+
+      if (videogames.length === 0) {
+        return res.status(404).json({
+          error: "No se encontraron videojuegos con esa palabra en el nombre.",
+        });
+      }
+
+      return res.status(200).send(videogames);
     }
-
-    return res.status(200).send(videogames);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -93,6 +95,3 @@ router.get("/videogames/:idVideogame", async (req, res) => {
 });
 
 module.exports = router;
-/*
-
-*/
