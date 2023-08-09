@@ -1,7 +1,7 @@
 {
     "name":"Juego 1",
     "description":"Este es el primer juego",
-    "plataforms":"PC",
+    "platforms":"PC",
     "background_image":"https://www.xtrafondos.com/wallpapers/resized/rapidos-y-furiosos-x-11694.jpg?s=large",
     "released":"04-02-2022",
     "rating":2,
@@ -11,7 +11,7 @@
 {
     "name":"Juego 1",
     "description":"Este es el primer juego",
-    "plataforms":"PC",
+    "platforms":"PC",
     "background_image":"https://www.xtrafondos.com/wallpapers/resized/rapidos-y-furiosos-x-11694.jpg?s=large",
     "released":"04-02-2022",
     "rating":2,
@@ -22,7 +22,7 @@
 {
     "name":"Hola",
     "description":"Chau",
-    "plataforms":"PC",
+    "platforms":"PC",
     "background_image":"https://www.xtrafondos.com/wallpapers/resized/apex-legends-bloodhound-3398.jpg?s=large",
     "released":"04-02-2022",
     "rating":10,
@@ -33,7 +33,7 @@
     "name":"League Of Legends",
     "description":"Vi enojada",
     "background_image":"https://www.xtrafondos.com/wallpapers/resized/vi-de-arcane-8958.jpg?s=large",
-    "plataforms":"PC",
+    "platforms":"PC",
     "released":"20/05/10",
     "rating":"10",
     "genres":["Arcade"],
@@ -43,11 +43,11 @@
     "name":"a",
     "description":"sadasda",
     "background_image":"asdasdas",
-    "plataforms":"asdasd",
+    "platforms":"asdasd",
     "released":"02/02/2002",
     "genres":["Action","Indie","Adventure","RPG","Strategy","Shooter","Casual","Simulation","Puzzle","Arcade","Platformer","Massively Multiplayer","Racing","Sports","Fighting","Family","Board Games","Educational","Card"],
     "rating":5
 }
 
-{"name":"a","description":"sadasda","background_image":"asdasdas","plataforms":"asdasd","released":"02/02/2002","genres":["Action","Indie","Adventure","RPG","Strategy","Shooter","Casual","Simulation","Puzzle","Arcade","Platformer","Massively Multiplayer","Racing","Sports","Fighting","Family","Board Games","Educational","Card"],"rating":5}
+{"name":"a","description":"sadasda","background_image":"asdasdas","platforms":"asdasd","released":"02/02/2002","genres":["Action","Indie","Adventure","RPG","Strategy","Shooter","Casual","Simulation","Puzzle","Arcade","Platformer","Massively Multiplayer","Racing","Sports","Fighting","Family","Board Games","Educational","Card"],"rating":5}
 

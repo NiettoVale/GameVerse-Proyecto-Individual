@@ -1,17 +1,19 @@
 const { Router } = require("express");
 const router = Router();
-const getAllVideogamesDB = require("../controllers/getAllVideogamesDB");
-const postVideogame = require("../controllers/postVideogame");
-const getGenres = require("../controllers/getGenres");
-const getVideogameById = require("../controllers/getVideogameById");
-const searchVideogamesByName = require("../controllers/searchVideogamesByName");
+const getAllVideogamesDB = require("../controllers/videogames/getAllVideogamesDB");
+const postVideogame = require("../controllers/videogames/postVideogame");
+const getGenres = require("../controllers/videogames/getGenres");
+const getVideogameById = require("../controllers/videogames/getVideogameById");
+const searchVideogamesByName = require("../controllers/videogames/searchVideogamesByName");
+const deleteVideogame = require("../controllers/videogames/deleteVideogame");
+const updateVideogame = require("../controllers/videogames/updateVideogame");
 
 router.get("/videogames", async (_req, res) => {
   try {
     const videogames = await getAllVideogamesDB();
     return res.status(202).json(videogames);
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send({ error: error.message });
   }
 });
 
@@ -51,7 +53,7 @@ router.post("/videogames", async (req, res) => {
 
     return res.status(200).send("Videojuego creado con éxito!!!");
   } catch (error) {
-    return res.status(400).send(error.message);
+    return res.status(400).send({ error: error.message });
   }
 });
 
@@ -60,7 +62,7 @@ router.get("/genres", async (_req, res) => {
     const genres = await getGenres();
     return res.status(200).json(genres);
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send({ error: error.message });
   }
 });
 
@@ -80,7 +82,7 @@ router.get("/videogames/name", async (req, res) => {
       return res.status(200).send(videogames);
     }
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send({ error: error.message });
   }
 });
 
@@ -90,8 +92,14 @@ router.get("/videogames/:idVideogame", async (req, res) => {
     const infoVideogame = await getVideogameById(idVideogame);
     return res.status(200).send(infoVideogame);
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send({ error: error.message });
   }
 });
+
+// Extra 1: Delete videogame:
+router.delete("/videogames/:id", deleteVideogame);
+
+// Extra 2: Update videogame:
+router.put("/videogames/:id", updateVideogame);
 
 module.exports = router;

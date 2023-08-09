@@ -40,6 +40,6 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
     },
-    { timestaps: false }
+    { timestamps: false }
   );
 };

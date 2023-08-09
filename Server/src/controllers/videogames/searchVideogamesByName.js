@@ -1,6 +1,6 @@
 const { NAME, API_KEY_NAME } = process.env;
 const { Op } = require("sequelize");
-const { Videogame, Genre } = require("../db");
+const { Videogame, Genre } = require("../../db");
 const axios = require("axios");
 
 const searchVideogamesByName = async (name) => {
@@ -21,17 +21,18 @@ const searchVideogamesByName = async (name) => {
     });
 
     const { data } = await axios(`${NAME}=${name}${API_KEY_NAME}`);
-    const apiResults = data.results.filter((videojuego) =>
-      videojuego.name.toLowerCase().includes(nameLowerCase)
+    const apiResults = data.results.filter((videogame) =>
+      videogame.name.toLowerCase().includes(nameLowerCase)
     );
 
     // Mapear los resultados de la API para tener una estructura similar a la de la base de datos
-    const apiResultsWithGenres = apiResults.map((videojuego) => ({
-      id: videojuego.id,
-      name: videojuego.name,
-      background_image: videojuego.background_image,
-      rating: videojuego.rating,
-      genres: videojuego.genres.map((genre) => ({ name: genre.name })),
+    const apiResultsWithGenres = apiResults.map((videogame) => ({
+      id: videogame.id,
+      name: videogame.name,
+      background_image: videogame.background_image,
+      rating: videogame.rating,
+      genres: videogame.genres.map((genre) => ({ name: genre.name })),
+      platforms: videogame.platforms,
     }));
 
     const combinedResults = [...databaseResults, ...apiResultsWithGenres].slice(

@@ -1,4 +1,4 @@
-const { Genre } = require("../db.js");
+const { Genre } = require("../../db");
 const axios = require("axios");
 const { GENRES, API_KEY } = process.env;
 
@@ -8,15 +8,17 @@ const getGenres = async () => {
 
     if (count === 0) {
       const { data } = await axios(`${GENRES}${API_KEY}`);
-      const generos = data.results.map((Genre) => {
+      const genres = data.results.map((Genre) => {
         return { name: Genre.name };
       });
-      await Genre.bulkCreate(generos);
+
+      await Genre.bulkCreate(genres);
     }
 
     const allGenres = await Genre.findAll({
       attributes: ["name"],
     });
+
     return allGenres.map((genre) => genre.name);
   } catch (error) {
     throw new Error(error.message);

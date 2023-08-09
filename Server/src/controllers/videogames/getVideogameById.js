@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Videogame, Genre } = require("../db.js");
+const { Videogame, Genre } = require("../../db");
 const axios = require("axios");
 const { VIDEOGAMES, API_KEY } = process.env;
 

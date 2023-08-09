@@ -1,4 +1,4 @@
-const { Videogame, Genre } = require("../db");
+const { Videogame, Genre } = require("../../db");
 
 const postVideogame = async (
   name,
@@ -19,17 +19,17 @@ const postVideogame = async (
       rating,
     });
 
-    for (const generoName of genres) {
-      const [genero] = await Genre.findOrCreate({
-        where: { name: generoName },
+    for (const genreName of genres) {
+      const [genre] = await Genre.findOrCreate({
+        where: { name: genreName },
       });
-      await newVideogame.addGenre(genero);
+      await newVideogame.addGenre(genre);
     }
-    const videojuegoCongenres = await Videogame.findByPk(newVideogame.id, {
+    const videogameWithGenres = await Videogame.findByPk(newVideogame.id, {
       include: Genre,
     });
 
-    return videojuegoCongenres;
+    return videogameWithGenres;
   } catch (error) {
     throw new Error(error.message);
   }

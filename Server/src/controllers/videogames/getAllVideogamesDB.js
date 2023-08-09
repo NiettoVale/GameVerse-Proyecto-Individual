@@ -1,4 +1,4 @@
-const { Videogame, Genre } = require("../db");
+const { Videogame, Genre } = require("../../db");
 
 const getAllVideogamesDB = async () => {
   try {
@@ -7,7 +7,7 @@ const getAllVideogamesDB = async () => {
     });
 
     if (videogames.length === 0) {
-      return "No se crearon videojuegos.";
+      return { error: "No se crearon videojuegos." };
     }
 
     return videogames;
