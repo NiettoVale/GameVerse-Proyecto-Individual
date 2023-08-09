@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Form.module.css";
+import axios from "axios";
 import styles from "./Form.module.css";
+import "./Form.module.css";
+
+const get_genres = process.env.REACT_APP_GET_GENRESDB;
+const post_videogames = process.env.REACT_APP_POST_VIDEOGAMES;
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -41,7 +44,7 @@ const Form = () => {
 
   useEffect(() => {
     // Obtener los géneros desde la URL proporcionada
-    axios.get("http://localhost:3001/genres").then((response) => {
+    axios.get(`${get_genres}`).then((response) => {
       setGenresList(response.data);
     });
   }, []);
@@ -58,16 +61,11 @@ const Form = () => {
       };
 
       // Enviamos el género seleccionado como un array en lugar de una cadena de texto
-      const { data } = await axios.post(
-        "http://localhost:3001/videogames",
-        newVideogame
-      );
+      const { data } = await axios.post(`${post_videogames}`, newVideogame);
 
       alert(data);
     } catch (error) {
-      alert("Hubo un error!!!");
-
-      console.log(error);
+      alert(`Hubo un error!!! ${error.message}`);
     }
   };
 
@@ -138,7 +136,12 @@ const Form = () => {
         <br />
         <label>
           Géneros:
-          <select name="genres" value={formData.genres} onChange={handleChange}>
+          <select
+            name="genres"
+            value={formData.genres}
+            onChange={handleChange}
+            multiple
+          >
             <option value="">Seleccionar género</option>
             {genresList.map((genre, index) => (
               <option key={index} value={genre}>

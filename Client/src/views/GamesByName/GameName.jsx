@@ -5,7 +5,6 @@ import Cards from "../../components/cards/Cards";
 const GameName = () => {
   const location = useLocation();
   const searchGames = location.state.searchGames;
-  console.log("Este es el arreglo buscado: ", searchGames[0]);
   return (
     <div>
       <Link to={"/home"}>

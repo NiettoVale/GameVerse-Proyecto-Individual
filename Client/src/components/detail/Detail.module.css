@@ -17,7 +17,7 @@
   text-align: justify;
 }
 
-.button {
+.buttonDetail {
   background-color: #2b818c;
   color: #fff;
   border: none;
@@ -27,7 +27,7 @@
   margin-bottom: 20px;
 }
 
-.button:hover {
+.buttonDetail:hover {
   background-color: #990069;
 }
 

@@ -3,17 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Detail.module.css";
 
+const get_videogames = process.env.REACT_APP_GET_VIDEOGAMES;
+const get_videogamesApi = process.env.REACT_APP_GET_VIDEOGAMESAPI;
+const api_key = process.env.REACT_APP_API_KEY;
+const deleteVideogame = process.env.REACT_APP_DELETE_VIDEOGAME;
+
 const Detail = () => {
   const { id } = useParams();
   const [videogame, setVideogame] = useState({});
-
+  const isUUID =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
   useEffect(() => {
-    const isUUID =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
-        id
-      );
     if (isUUID) {
-      axios(`http://localhost:3001/videogames/${id}`).then(({ data }) => {
+      axios(`${get_videogames}/${id}`).then(({ data }) => {
         const dataVideogame = {
           id: data.id,
           name: data.name,
@@ -27,9 +29,7 @@ const Detail = () => {
         setVideogame(dataVideogame);
       });
     } else {
-      axios(
-        `https://api.rawg.io/api/games/${id}?key=c55f5d34232e434f8035276fcdb6303e&dates=2019-09-01,2023-05-30&platforms=18,1,7`
-      ).then(({ data }) => {
+      axios(`${get_videogamesApi}/${id}${api_key}`).then(({ data }) => {
         const dataVideogame = {
           id: data.id,
           name: data.name,
@@ -47,16 +47,37 @@ const Detail = () => {
     }
 
     return () => setVideogame({});
-  }, [id]);
+  }, [isUUID, id]);
+
+  const handleDelete = async () => {
+    try {
+      const { data } = await axios.delete(`${deleteVideogame}/${id}`);
+      window.alert(data.message); // Muestra la alerta con el mensaje del servidor
+      // Redirige al usuario al inicio
+      window.location.href = "/home";
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.container}>
         <div>
           <Link to={"/home"}>
-            <button className={styles.button}>Volver</button>
+            <button className={styles.buttonDetail}>Volver</button>
           </Link>
         </div>
+        {isUUID ? (
+          <div>
+            <button className={styles.buttonDetail}>Editar</button>
+            <button className={styles.buttonDetail} onClick={handleDelete}>
+              Eliminar
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
         <p className={styles.attribute}>
           <span className={styles.attributesName}>ID:</span> {videogame.id}
         </p>{" "}

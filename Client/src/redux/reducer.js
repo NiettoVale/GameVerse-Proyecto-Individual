@@ -19,6 +19,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case SET_TOTAL_PAGINAS:
+      return {
+        ...state,
+        totalPaginas: payload,
+      };
+
     case OBTENER_VIDEOJUEGOS:
       return {
         ...state,
@@ -72,12 +78,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         videogames: sortedvideogamesByGenre,
-      };
-
-    case SET_TOTAL_PAGINAS:
-      return {
-        ...state,
-        totalPaginas: payload,
       };
 
     default:

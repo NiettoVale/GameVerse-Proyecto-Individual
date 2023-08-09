@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./SearchBar.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+const get_videgameByName = process.env.REACT_APP_GET_VIDEOGAMEBYNAME;
 
 const SearchBar = () => {
   const [searchName, setSearchName] = useState("");
@@ -14,20 +15,13 @@ const SearchBar = () => {
   const handleSearch = async () => {
     if (searchName.trim() !== "") {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/videogames/name?name=${searchName}`
-        );
-
-        console.log("Este es la data: ", response.data);
-        // Redirigir utilizando navigate y pasar props como parámetros
+        const response = await axios.get(`${get_videgameByName}${searchName}`);
         navigate("/gameName", { state: { searchGames: response.data } });
       } catch (error) {
         if (error.response && error.response.status === 404) {
           alert("No se encontraron videojuegos con ese nombre.");
-          // Manejar la respuesta cuando no se encuentren juegos
-          // Puedes mostrar un mensaje o realizar la acción que desees
         } else {
-          console.error("Error fetching data:", error);
+          alert("Error al obtener los juegos:", error);
         }
       }
     }
