@@ -7,6 +7,8 @@ const getVideogameById = require("../controllers/videogames/getVideogameById");
 const searchVideogamesByName = require("../controllers/videogames/searchVideogamesByName");
 const deleteVideogame = require("../controllers/videogames/deleteVideogame");
 const updateVideogame = require("../controllers/videogames/updateVideogame");
+const loginUser = require("../controllers/users/loginUser");
+const registerUser = require("../controllers/users/registerUser");
 
 router.get("/videogames", async (_req, res) => {
   try {
@@ -101,5 +103,9 @@ router.delete("/videogames/:id", deleteVideogame);
 
 // Extra 2: Update videogame:
 router.put("/videogames/:id", updateVideogame);
+
+// Extra 3: Configuracion de los users:
+router.post("/login", loginUser);
+router.post("/register", registerUser);
 
 module.exports = router;
