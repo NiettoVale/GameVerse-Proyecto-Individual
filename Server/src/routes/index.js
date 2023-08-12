@@ -10,17 +10,20 @@ const updateVideogame = require("../controllers/videogames/updateVideogame");
 const loginUser = require("../controllers/users/loginUser");
 const registerUser = require("../controllers/users/registerUser");
 
+// Ruta para obtener todos los juegos de la base de datos.
 router.get("/videogames", async (_req, res) => {
   try {
     const videogames = await getAllVideogamesDB();
-    return res.status(202).json(videogames);
+    return res.status(200).json(videogames);
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
 });
 
+// Ruta para crear un nuevo videojuego.
 router.post("/videogames", async (req, res) => {
   try {
+    // Extraemos la informacion que nos llega por body.
     const {
       name,
       description,
@@ -31,6 +34,7 @@ router.post("/videogames", async (req, res) => {
       genres,
     } = req.body;
 
+    // Verificamos si falta alguna propiedad.
     if (
       !name ||
       !description ||
@@ -43,6 +47,7 @@ router.post("/videogames", async (req, res) => {
       throw new Error("Faltan datos o el formato es incorrecto!!!");
     }
 
+    // Si no falta ninguna propiedad creamos el juego.
     await postVideogame(
       name,
       description,
@@ -53,12 +58,13 @@ router.post("/videogames", async (req, res) => {
       genres
     );
 
-    return res.status(200).send("Videojuego creado con éxito!!!");
+    return res.status(200).json({ message: "Videojuego creado con éxito!!!" });
   } catch (error) {
     return res.status(400).send({ error: error.message });
   }
 });
 
+// Ruta para obtener los juegos.
 router.get("/genres", async (_req, res) => {
   try {
     const genres = await getGenres();
@@ -68,6 +74,7 @@ router.get("/genres", async (_req, res) => {
   }
 });
 
+// Ruta para obtener los juegos por un nombre en especifico.
 router.get("/videogames/name", async (req, res) => {
   try {
     const { name } = req.query;
@@ -88,6 +95,7 @@ router.get("/videogames/name", async (req, res) => {
   }
 });
 
+// Ruta para obtener los juegos mediante un id:
 router.get("/videogames/:idVideogame", async (req, res) => {
   try {
     const { idVideogame } = req.params;

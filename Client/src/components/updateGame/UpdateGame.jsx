@@ -4,9 +4,13 @@ import styles from "./UpdateGame.module.css";
 import validateGame from "./validationGame";
 
 const UpdateGame = () => {
+  // usamos el hook "useLocation" para obtener informacion de la ruta en la que estamos.
   const location = useLocation();
+
+  //  Accedemos al estado del objeto lacation y extraemos la propiedad id.
   const id = location.state.id;
 
+  // Creamos un estado local para almacenar la info del formulario
   const [gameData, setGameData] = useState({
     name: "",
     platforms: "",
@@ -15,15 +19,21 @@ const UpdateGame = () => {
     rating: "",
   });
 
+  // Creamos un estado local para almacenar los errores.
   const [errors, setErrors] = useState({});
 
-  const handleInputChange = (event) => {
+  // Creamos una funcion que manja los cambios en los inputs.
+  const handleChange = (event) => {
+    // Hacemos la destructuracion de name y value de "target"
     const { name, value } = event.target;
+
+    // Seteamos el cambio correspondiente.
     setGameData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
 
+    // Seteamos los errores.
     setErrors(
       validateGame({
         ...gameData,
@@ -32,12 +42,12 @@ const UpdateGame = () => {
     );
   };
 
+  // Creamos una funcion que maneja el envio del form.
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      console.log("Datos a enviar:", gameData);
 
-      // Realizar la petición al servidor
+      // Realizamos una petición al backend:
       const response = await fetch(`http://localhost:3001/videogames/${id}`, {
         method: "PUT",
         headers: {
@@ -45,20 +55,18 @@ const UpdateGame = () => {
         },
         body: JSON.stringify(gameData),
       });
+      // Extraemos los datos de la respuesta en json.
       const responseData = await response.json();
 
-      console.log("Esta es la respones:");
-      console.log(responseData);
-      console.log("Esta es la gameData:");
-      console.log(gameData);
-
+      // Verificamos el estado de la respuesta y mostramos el mensaje.
       if (response.status === 200) {
         alert(responseData.message);
       } else if (response.status === 500) {
         alert(responseData.message);
       }
     } catch (error) {
-      alert("Error del servidor!!!");
+      // Si hubo algun error lo informamos.
+      alert("Algo salió mal!!!");
       console.log(error);
     }
   };
@@ -74,7 +82,7 @@ const UpdateGame = () => {
             type="text"
             name="name"
             value={gameData.name}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
           {errors.name && <p className={styles.error}>{errors.name}</p>}
 
@@ -84,7 +92,7 @@ const UpdateGame = () => {
             type="text"
             name="platforms"
             value={gameData.platforms}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
 
           <label className={styles.label}>Descripción:</label>
@@ -92,7 +100,7 @@ const UpdateGame = () => {
             className={styles.textarea}
             name="description"
             value={gameData.description}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
 
           <label className={styles.label}>Fecha de lanzamiento:</label>
@@ -101,7 +109,7 @@ const UpdateGame = () => {
             type="date"
             name="released"
             value={gameData.released}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
 
           <label className={styles.label}>Rating:</label>
@@ -110,7 +118,7 @@ const UpdateGame = () => {
             type="number"
             name="rating"
             value={gameData.rating}
-            onChange={handleInputChange}
+            onChange={handleChange}
             min="1"
             max="10"
             step="1"

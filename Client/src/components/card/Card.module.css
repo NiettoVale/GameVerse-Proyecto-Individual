@@ -13,10 +13,10 @@
   transform: scale(0.8);
   transition: transform 0.3s ease;
 
-  display: flex; /* Utilizamos flexbox */
-  flex-direction: column; /* Alineamos los elementos en columna */
-  justify-content: center; /* Centramos los elementos verticalmente */
-  align-items: start; /* Centramos los elementos horizontalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
 
   text-align: justify;
   font-size: 17px;

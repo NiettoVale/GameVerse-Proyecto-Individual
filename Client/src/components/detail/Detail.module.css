@@ -63,12 +63,11 @@
 
 .btnContainer {
   display: flex;
-  justify-content: flex-start; /* Alineación a la izquierda */
-  align-items: center; /* Alineación verticalmente centrada */
-  margin-top: 10px; /* Espacio entre los botones y el contenido superior */
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
 }
 
-h3,
 h2 {
   color: #9acd32;
 }

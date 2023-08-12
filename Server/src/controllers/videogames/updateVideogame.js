@@ -10,7 +10,7 @@ const updateVideogame = async (req, res) => {
     console.log("Antes de actualizar:");
     console.log(updateProject);
 
-    // Verifica si los valores son undefined o vacíos y realiza la actualización si son diferentes
+    // Verificamos si los valores son undefined o vacíos y realizamos la actualización si son diferentes.
     if (name !== undefined && name !== "") {
       updateProject.name = name;
     }
@@ -30,9 +30,7 @@ const updateVideogame = async (req, res) => {
       updateProject.rating = rating;
     }
 
-    console.log("Despues de actualizar:");
-    console.log(updateProject);
-    // Verifica si se realizaron cambios y guarda los cambios si es necesario
+    // Verificamos si se realizaron cambios y guardamos dichos cambios si es necesario.
     if (updateProject.changed()) {
       await updateProject.save();
       return res.status(200).json({ message: "Videojuego Actualizado" });

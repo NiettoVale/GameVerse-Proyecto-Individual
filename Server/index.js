@@ -1,3 +1,4 @@
+require("dotenv").config();
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
@@ -5,6 +6,6 @@ const { conn } = require("./src/db.js");
 conn.sync({ force: false }).then(() => {
   console.log("Base de datos conectada.");
   server.listen(3001, () => {
-    console.log("Servidor iniciado con exito.");
+    console.log(`Servidor iniciado con exito.`);
   });
 });

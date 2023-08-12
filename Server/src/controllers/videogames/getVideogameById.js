@@ -7,16 +7,19 @@ const getVideogameById = async (idVideogame) => {
   try {
     let videogame;
 
+    // Verificamos si el id corresponde al de la API o la base de datos.
     const isUUID =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
         idVideogame
       );
 
+    // Si pertenece a la base de datos, lo buscamos ahi.
     if (isUUID) {
-      // Buscar en la base de datos y cambiar propiedad "Genres" a "genres"
+      // Realizamos la busquyeda.
       videogame = await Videogame.findByPk(idVideogame, {
         include: { model: Genre, as: "Genres", attributes: ["name"] },
       });
+      // Si existe el juego, cambiamos la propiedad "Genres" a "genres".
       if (videogame) {
         videogame = {
           ...videogame.toJSON(),
@@ -25,6 +28,7 @@ const getVideogameById = async (idVideogame) => {
         delete videogame.Genres; // Eliminamos la propiedad "Genres"
       }
     } else {
+      // En caso de que no se un "UUID", lo buscamos en la API
       const { data } = await axios(`${VIDEOGAMES}/${idVideogame}${API_KEY}`);
 
       videogame = {
@@ -38,6 +42,7 @@ const getVideogameById = async (idVideogame) => {
       };
     }
 
+    // Si existe el juego lo retornamos.
     if (videogame) {
       return videogame;
     } else {

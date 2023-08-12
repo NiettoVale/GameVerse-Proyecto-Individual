@@ -8,13 +8,13 @@
 
 .containerLanding {
   display: grid;
-  place-items: center; /* Centrar contenido horizontal y verticalmente */
+  place-items: center;
   height: 100vh;
 }
 
 .centerContent {
   display: flex;
-  flex-direction: column; /* Cambia la dirección de flexión a columna */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 320px;
@@ -33,11 +33,10 @@
 }
 
 .btnLanding {
-  /* Estilos previos al hover */
   width: 150px;
   height: 50px;
   background-color: #833938;
-  color: #ffffff; /* Blanco */
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -48,5 +47,5 @@
   transition: background-color 0.8s ease;
 }
 .btnLanding:hover {
-  background-color: #0b1110; /* Negro */
+  background-color: #0b1110;
 }
