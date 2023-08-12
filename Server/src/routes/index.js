@@ -84,7 +84,7 @@ router.get("/videogames/name", async (req, res) => {
       return res.status(200).send(videogames);
     }
   } catch (error) {
-    return res.status(500).send({ error: error.message });
+    return res.status(500).send({ error: "Error del servidor" });
   }
 });
 

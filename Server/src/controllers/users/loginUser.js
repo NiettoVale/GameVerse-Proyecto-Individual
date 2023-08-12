@@ -9,7 +9,7 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ where: { name: name } });
 
     if (!user) {
-      return res.status(401).json({ message: "Usuario no encontrado" });
+      return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
     // Verificar la contraseña

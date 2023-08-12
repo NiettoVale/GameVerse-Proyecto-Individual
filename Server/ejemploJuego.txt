@@ -49,5 +49,17 @@
     "rating":5
 }
 
-{"name":"a","description":"sadasda","background_image":"asdasdas","platforms":"asdasd","released":"02/02/2002","genres":["Action","Indie","Adventure","RPG","Strategy","Shooter","Casual","Simulation","Puzzle","Arcade","Platformer","Massively Multiplayer","Racing","Sports","Fighting","Family","Board Games","Educational","Card"],"rating":5}
+{
+    "name":"a",
+    "description":"Assassin's Creed es una popular franquicia de videojuegos que combina elementos de acción, aventura, sigilo y exploración en un entorno histórico y ficticio. La serie se centra en la lucha entre dos antiguas facciones rivales: los Asesinos, que buscan la libertad y el libre albedrío, y los Templarios, que buscan el control y la orden en el mundo.
+    Los juegos de "Assassin's Creed" suelen llevar a los jugadores a diferentes períodos históricos y lugares, permitiéndoles experimentar momentos icónicos mientras interactúan con personajes históricos y ficticios. Los protagonistas, conocidos como Asesinos, utilizan una mezcla de habilidades de combate, sigilo, escalada y navegación para cumplir misiones y objetivos, a menudo involucrando asesinatos selectivos y misiones secretas.",
+    "background_image":"asdasdas",
+    "platforms":"asdasd",
+    "released":"02/02/2002",
+    "genres":["Action"],
+    "rating":5
+}
+
+
+
 

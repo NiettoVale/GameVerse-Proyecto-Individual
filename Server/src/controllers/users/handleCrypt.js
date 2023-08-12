@@ -1,4 +1,3 @@
-// Extra 4: Hasheando la password:
 const bcrypt = require("bcryptjs");
 
 const encrypt = async (textPlain) => {

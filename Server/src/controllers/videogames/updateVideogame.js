@@ -7,31 +7,34 @@ const updateVideogame = async (req, res) => {
       req.body;
 
     const updateProject = await Videogame.findByPk(id);
+    console.log("Antes de actualizar:");
+    console.log(updateProject);
 
-    // Verifico propiedades y actualizo si existen:
-    if (name !== undefined) {
+    // Verifica si los valores son undefined o vacíos y realiza la actualización si son diferentes
+    if (name !== undefined && name !== "") {
       updateProject.name = name;
     }
-    if (description !== undefined) {
+    if (description !== undefined && description !== "") {
       updateProject.description = description;
     }
-    if (platforms !== undefined) {
+    if (platforms !== undefined && platforms !== "") {
       updateProject.platforms = platforms;
     }
-    if (background_image !== undefined) {
+    if (background_image !== undefined && background_image !== "") {
       updateProject.background_image = background_image;
     }
-    if (released !== undefined) {
+    if (released !== undefined && released !== "") {
       updateProject.released = released;
     }
-    if (rating !== undefined) {
+    if (rating !== undefined && rating !== "") {
       updateProject.rating = rating;
     }
 
-    // Guardo los cambios si se realizaron:
+    console.log("Despues de actualizar:");
+    console.log(updateProject);
+    // Verifica si se realizaron cambios y guarda los cambios si es necesario
     if (updateProject.changed()) {
       await updateProject.save();
-
       return res.status(200).json({ message: "Videojuego Actualizado" });
     } else {
       return res
