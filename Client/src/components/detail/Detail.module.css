@@ -18,13 +18,28 @@
 }
 
 .buttonDetail {
+  display: flex;
+  align-items: center;
+  padding: 10px;
   background-color: #2b818c;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.link {
+  display: inline-block;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .buttonDetail:hover {
@@ -46,6 +61,14 @@
   object-fit: contain;
 }
 
-h3 {
+.btnContainer {
+  display: flex;
+  justify-content: flex-start; /* Alineación a la izquierda */
+  align-items: center; /* Alineación verticalmente centrada */
+  margin-top: 10px; /* Espacio entre los botones y el contenido superior */
+}
+
+h3,
+h2 {
   color: #9acd32;
 }

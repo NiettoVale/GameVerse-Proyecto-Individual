@@ -6,6 +6,32 @@
   height: 100vh;
 }
 
+.containerLanding {
+  display: grid;
+  place-items: center; /* Centrar contenido horizontal y verticalmente */
+  height: 100vh;
+}
+
+.centerContent {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección de flexión a columna */
+  justify-content: center;
+  align-items: center;
+  margin-top: 320px;
+}
+
+.parrafos {
+  color: white;
+  text-align: justify;
+}
+
+.btnGroupLanding {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .btnLanding {
   /* Estilos previos al hover */
   width: 150px;
@@ -17,19 +43,10 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 20px;
 
   transition: background-color 0.8s ease;
 }
 .btnLanding:hover {
   background-color: #0b1110; /* Negro */
-}
-
-.containerLanding {
-  display: grid;
-  place-items: center; /* Centrar contenido horizontal y verticalmente */
-  height: 100vh;
-}
-
-.centerContent {
-  margin-top: 300px; /* Ajustar el valor para mover el botón hacia abajo */
 }

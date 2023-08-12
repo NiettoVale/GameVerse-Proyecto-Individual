@@ -1,10 +1,7 @@
+/* Si hay videojuegos mostras esto */
 .headerContainer {
   text-align: center;
   margin-bottom: 20px;
-}
-
-h1 {
-  text-align: center;
 }
 
 .btnDB {
@@ -22,4 +19,39 @@ h1 {
 
 .btnDB:hover {
   background-color: #0b1110; /* Negro */
+}
+
+/* Si no hay videojuegos mostras esto */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../image/assasins.jpg");
+  background-size: cover; /* Hace que la imagen cubra todo el fondo */
+  background-position: center center; /* Centra la imagen en el fondo */
+  min-height: 100vh; /* Mínimo alto de la vista para ocupar toda la pantalla */
+  margin: 0; /* Elimina el margen predeterminado del cuerpo del documento */
+  padding: 0; /* Elimina el padding predeterminado del cuerpo del documento */
+}
+
+.text {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.btn {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #f03268;
+  color: #000000;
 }

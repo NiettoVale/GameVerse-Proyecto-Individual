@@ -1,37 +1,32 @@
-/* styles.module.css */
-
-/* styles.module.css */
-
+body {
+  overflow-x: hidden;
+}
 .containerPrincipal {
   display: flex;
-  justify-content: end; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: flex-end;
+  align-items: center;
   min-width: 100vw;
-  min-height: 100vh; /* Ajusta el tamaño mínimo al 100% del alto de la ventana */
+  min-height: 100vh;
   background-image: url("../../image/fondo-Form.jpg");
-  background-size: cover; /* La imagen se ajustará para cubrir todo el contenedor */
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .formContainer {
   display: flex;
-  flex-direction: column; /* Cambia la dirección a columna */
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.384);
   border-radius: 10px;
   backdrop-filter: blur(5px);
   margin-right: 80px;
   padding: 30px;
-  height: 560px;
-  width: 400px;
-  max-width: 460px;
+  min-height: 600px;
 }
 
-/* Estilos para el botón Volver */
 .goBackButton {
-  /* margin-top: 35px; */
   background-color: #ed2860;
   color: #fff;
   border: 2px solid black;
@@ -39,22 +34,7 @@
   cursor: pointer;
 }
 
-/* Estilos para los campos de entrada y etiquetas */
-label {
-  font-weight: bold;
-  width: 100%; /* Asegura que la etiqueta ocupe todo el ancho */
-}
-
-input,
-select {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  padding: 6px;
-  border: 1px solid #211c33;
-  background-color: #fff;
-}
-
-/* Estilos para el botón de guardar */
-button.createBtn {
+.createBtn {
   background-color: #2b818c;
   color: #fff;
   border: none;
@@ -62,7 +42,41 @@ button.createBtn {
   cursor: pointer;
 }
 
-/* Estilos para la opción "Seleccionar género" */
+.createBtn.disabled {
+  background-color: #b0b0b0;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+label {
+  font-weight: bold;
+  width: 100%;
+}
+
+select {
+  height: 55px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #211c33;
+  background-color: #fff;
+}
+
 select option[value=""] {
   color: #211c33;
 }

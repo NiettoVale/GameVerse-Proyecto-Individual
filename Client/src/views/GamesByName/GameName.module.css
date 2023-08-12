@@ -1,0 +1,19 @@
+.titleGame {
+  text-align: center;
+}
+
+.btnGame {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btnGame:hover {
+  background-color: #f03268;
+  color: #000000;
+}
