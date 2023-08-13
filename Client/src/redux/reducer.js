@@ -6,6 +6,7 @@ import {
   SET_TOTAL_PAGINAS,
   OBTENER_VIDEOJUEGOS_DB,
   OBTENER_GENEROS,
+  FILTER,
 } from "./action-types";
 
 /*
@@ -19,6 +20,7 @@ Creamos un estado global para almacenar lo siguiente:
 const initialState = {
   videogames: [],
   videogamesDB: [],
+  gamesByGenres: [],
   genres: [],
   paginaActual: 1,
   totalPaginas: 1,
@@ -42,6 +44,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         videogames: payload,
+        gamesByGenres: [],
       };
 
     // Almacenamos los juegos de la DB.
@@ -91,6 +94,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         videogames: sortedvideogamesByRating,
+      };
+
+    case FILTER:
+      const allVideogamesFiltered = state.videogames.filter((videogame) => {
+        return videogame.genres.some((genre) => payload.includes(genre.name));
+      });
+
+      return {
+        ...state,
+        gamesByGenres: allVideogamesFiltered,
       };
 
     default:

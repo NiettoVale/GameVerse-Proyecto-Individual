@@ -2,9 +2,10 @@ body {
   background-color: #ffc994;
 }
 
-hr {
-  border: black solid 2px;
+h3 {
+  color: yellowgreen;
 }
+
 .paginado {
   margin: 0 auto;
   margin-top: 12px;

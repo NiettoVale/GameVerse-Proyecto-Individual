@@ -7,10 +7,11 @@ import {
   SET_TOTAL_PAGINAS,
   OBTENER_VIDEOJUEGOS_DB,
   OBTENER_GENEROS,
+  FILTER,
 } from "./action-types";
 
 const get_videogamesDb = process.env.REACT_APP_GET_VIDEOGAMESDB;
-const get_genresApi = process.env.REACT_APP_GET_GENRESAPI;
+const get_genresDB = process.env.REACT_APP_GET_GENRESDB;
 const get_videogamesApi = process.env.REACT_APP_GET_VIDEOGAMESAPI;
 const api_key = process.env.REACT_APP_API_KEY;
 
@@ -84,8 +85,8 @@ export const obtenerGeneros = () => {
     y despachamos la action pasandole como payload el resultado
     de la peticion.
     */
-    const { data } = await axios(`${get_genresApi}`);
-    dispatch({ type: OBTENER_GENEROS, payload: data.results });
+    const { data } = await axios(`${get_genresDB}`);
+    dispatch({ type: OBTENER_GENEROS, payload: data });
   };
 };
 
@@ -96,4 +97,9 @@ export const sortvideogamesByName = (ascendente) => {
 
 export const sortvideogamesByRating = (ascendente) => {
   return { type: ORDENAR_POR_RATING, payload: ascendente };
+};
+
+// Video de DAI:
+export const filterGames = (genre) => {
+  return { type: FILTER, payload: genre };
 };
