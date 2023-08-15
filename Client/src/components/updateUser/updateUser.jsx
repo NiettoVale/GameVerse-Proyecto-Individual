@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import styles from "./UpdateUser.module.css";
 
 const UpdateUser = () => {
   const id = useParams();
@@ -44,28 +45,39 @@ const UpdateUser = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="name">Nombre: </label>
-      <input
-        type="text"
-        name="name"
-        onChange={handleChange}
-        value={userData.name}
-      />
-
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        name="password"
-        onChange={handleChange}
-        value={userData.password}
-      />
-
-      <button onClick={handleSubmit}>Actualizar</button>
-
-      <Link to={"/home"}>
-        <button>Volver</button>
-      </Link>
+    <div className={styles.container}>
+      <div className={styles.infoContainer}>
+        <label htmlFor="name" className={styles.labelUpdate}>
+          Nombre:{" "}
+        </label>
+        <input
+          type="text"
+          name="name"
+          onChange={handleChange}
+          value={userData.name}
+          className={styles.inputUpdate}
+        />
+        <label htmlFor="password" className={styles.labelUpdate}>
+          Password:{" "}
+        </label>
+        <input
+          type="password"
+          name="password"
+          onChange={handleChange}
+          value={userData.password}
+          className={styles.inputUpdate}
+        />
+        <div className={styles.buttonContainer}>
+          {" "}
+          {/* Contenedor para los botones */}
+          <button onClick={handleSubmit} className={styles.buttonUpdate}>
+            Actualizar
+          </button>
+          <Link to={"/users"}>
+            <button className={styles.buttonUpdate}>Volver</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

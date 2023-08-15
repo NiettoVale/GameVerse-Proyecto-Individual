@@ -1,0 +1,54 @@
+/* UpdateUser.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.infoContainer {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Color de fondo con transparencia */
+  backdrop-filter: blur(10px); /* Aplicar efecto de desenfoque */
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px; /* Puedes ajustar el ancho según tus preferencias */
+  height: 300px; /* Puedes ajustar la altura según tus preferencias */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex; /* Mostrar los botones en una fila */
+  justify-content: center; /* Centrar los botones horizontalmente */
+}
+
+.labelUpdate,
+.inputUpdate,
+.buttonUpdate {
+  margin: 10px;
+}
+
+.buttonUpdate {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.buttonUpdate:hover {
+  background-color: #f03268;
+  color: #000000;
+}
