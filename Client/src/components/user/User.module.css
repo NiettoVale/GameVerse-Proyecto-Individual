@@ -1,0 +1,65 @@
+/* Define el estilo de las filas */
+.tableRow {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc; /* Línea inferior para separar las filas */
+}
+
+/* Define el estilo de las celdas */
+.tableCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar tanto horizontal como verticalmente */
+  padding: 5px;
+  border-right: 1px solid #ccc; /* Línea derecha para separar las celdas */
+}
+
+/* Estilo para centrar contenido */
+.centerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar tanto horizontal como verticalmente */
+}
+
+/* Alternar el color de fondo de las filas completas */
+.tableRow:nth-child(even) {
+  background-color: #b9b9b9; /* Fondo gris para filas pares */
+}
+
+.tableRow:nth-child(odd) {
+  background-color: #ffffff; /* Fondo blanco para filas impares */
+}
+
+/* Estilo para las celdas de encabezado */
+.tableCellHeader {
+  flex: 0.26;
+  padding: 5px;
+  font-weight: bold;
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.updateUser,
+.deleteUser,
+.btnVolver {
+  background-color: #2b818c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.updateUser:hover,
+.deleteUser:hover,
+.btnVolver:hover {
+  background-color: #f03268;
+  color: #000000;
+}
+
+.btnVolver {
+  margin: 20px;
+}

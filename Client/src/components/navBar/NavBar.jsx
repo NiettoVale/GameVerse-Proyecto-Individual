@@ -27,6 +27,9 @@ const NavBar = () => {
         <button className={styles.navButton}>Videojuegos Creados</button>
       </Link>
 
+      <Link to={"/users"}>
+        <button className={styles.navButton}>Usuarios</button>
+      </Link>
       <div className={styles.searchBarContainer}>
         <SearchBar />
       </div>

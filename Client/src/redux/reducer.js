@@ -7,6 +7,7 @@ import {
   OBTENER_VIDEOJUEGOS_DB,
   OBTENER_GENEROS,
   FILTER,
+  GET_USERS,
 } from "./action-types";
 
 /*
@@ -14,6 +15,7 @@ Creamos un estado global para almacenar lo siguiente:
   * los videojuegos de la API.
   * los videojuegos de la Base de datos.
   * los generos obtenidos de la API.
+  * los usuarios de la base de datos.
   * la pagina actual.
   * el total de páginas.
 */
@@ -22,6 +24,7 @@ const initialState = {
   videogamesDB: [],
   gamesByGenres: [],
   genres: [],
+  users: [],
   paginaActual: 1,
   totalPaginas: 1,
 };
@@ -104,6 +107,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         gamesByGenres: allVideogamesFiltered,
+      };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: payload,
       };
 
     default:

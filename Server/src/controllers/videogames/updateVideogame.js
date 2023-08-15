@@ -6,33 +6,31 @@ const updateVideogame = async (req, res) => {
     const { name, description, platforms, background_image, released, rating } =
       req.body;
 
-    const updateProject = await Videogame.findByPk(id);
-    console.log("Antes de actualizar:");
-    console.log(updateProject);
+    const updateVideogame = await Videogame.findByPk(id);
 
     // Verificamos si los valores son undefined o vacíos y realizamos la actualización si son diferentes.
     if (name !== undefined && name !== "") {
-      updateProject.name = name;
+      updateVideogame.name = name;
     }
     if (description !== undefined && description !== "") {
-      updateProject.description = description;
+      updateVideogame.description = description;
     }
     if (platforms !== undefined && platforms !== "") {
-      updateProject.platforms = platforms;
+      updateVideogame.platforms = platforms;
     }
     if (background_image !== undefined && background_image !== "") {
-      updateProject.background_image = background_image;
+      updateVideogame.background_image = background_image;
     }
     if (released !== undefined && released !== "") {
-      updateProject.released = released;
+      updateVideogame.released = released;
     }
     if (rating !== undefined && rating !== "") {
-      updateProject.rating = rating;
+      updateVideogame.rating = rating;
     }
 
     // Verificamos si se realizaron cambios y guardamos dichos cambios si es necesario.
-    if (updateProject.changed()) {
-      await updateProject.save();
+    if (updateVideogame.changed()) {
+      await updateVideogame.save();
       return res.status(200).json({ message: "Videojuego Actualizado" });
     } else {
       return res
@@ -40,7 +38,7 @@ const updateVideogame = async (req, res) => {
         .json({ message: "No hubo cambios para actualizar" });
     }
   } catch (error) {
-    return res.status(500).json({ message: "Error interno del server" });
+    return res.status(500).json({ error: "Error interno del server" });
   }
 };
 

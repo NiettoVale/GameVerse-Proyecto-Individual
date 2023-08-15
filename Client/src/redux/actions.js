@@ -8,11 +8,13 @@ import {
   OBTENER_VIDEOJUEGOS_DB,
   OBTENER_GENEROS,
   FILTER,
+  GET_USERS,
 } from "./action-types";
 
 const get_videogamesDb = process.env.REACT_APP_GET_VIDEOGAMESDB;
 const get_genresDB = process.env.REACT_APP_GET_GENRESDB;
 const get_videogamesApi = process.env.REACT_APP_GET_VIDEOGAMESAPI;
+const get_users = process.env.REACT_APP_GET_USERS;
 const api_key = process.env.REACT_APP_API_KEY;
 
 // Acción para obtener los juegos de la API:
@@ -87,6 +89,15 @@ export const obtenerGeneros = () => {
     */
     const { data } = await axios(`${get_genresDB}`);
     dispatch({ type: OBTENER_GENEROS, payload: data });
+  };
+};
+
+export const obtenerUsuarios = () => {
+  return async (dispatch) => {
+    const response = await fetch(get_users);
+    const responseData = await response.json();
+
+    dispatch({ type: GET_USERS, payload: responseData });
   };
 };
 
