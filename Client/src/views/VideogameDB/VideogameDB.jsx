@@ -8,6 +8,7 @@ import { obtenerVideojuegosDB } from "../../redux/actions";
 const VideoGamesComponent = () => {
   // Traemos del estado global los videojuegos almacenados en la DB.
   const data = useSelector((state) => state.videogamesDB);
+
   // Accedemos a la funcion "dispatch" de redux, la cual nos permite despachar acciones.
   const dispatch = useDispatch();
 

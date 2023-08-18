@@ -29,7 +29,10 @@ const Landing = ({ loggedIn, setLoggedIn }) => {
           ) : (
             // En caso de que no estemos logeados mostramos un titulo y dos botones, uno para el iniciar sesion y otro para registrarse.
             <div className={styles.btnGroupLanding}>
-              <p className={styles.parrafos}>Bienvenido a mi web.</p>
+              <p className={styles.parrafos}>
+                GameVerse: Explora, Crea y Conquista
+              </p>
+
               <Link to="/login">
                 <button className={styles.btnLanding}>Iniciar Sesion</button>
               </Link>

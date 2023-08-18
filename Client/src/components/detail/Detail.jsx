@@ -33,20 +33,10 @@ const Detail = () => {
       // Mediante axios realizamos una solicitud al backend:
       axios(`${get_videogames}/${id}`).then(({ data }) => {
         /*
-        A partir de la respuesta obtenida por el servidor creamos una variable para 
-        almacenar la data del juego y luego guardarla en el estado local con setVideogame.
+        A partir de la respuesta obtenida por el servidor seteamos
+        la informacion del juego en el estado "videogame".
         */
-        const dataVideogame = {
-          id: data.id,
-          name: data.name,
-          background_image: data.background_image,
-          platforms: data.platforms,
-          description: data.description,
-          released: data.released,
-          rating: data.rating,
-          genres: data.genres.map((genre) => genre).join(", "),
-        };
-        setVideogame(dataVideogame);
+        setVideogame(data);
       });
     } else {
       /*
@@ -70,11 +60,6 @@ const Detail = () => {
         setVideogame(dataVideogame);
       });
     }
-    // Esta línea se ejecutará cuando el efecto se desmonte
-    return () => {
-      // Resetea el estado de videogame a un objeto vacío
-      setVideogame({});
-    };
   }, [isUUID, id]);
 
   const handleDelete = async () => {
@@ -83,22 +68,25 @@ const Detail = () => {
       // Hacemos una una peticion de tipo delete al backend.
       const { data } = await axios.delete(`${deleteVideogame}/${id}`);
 
-      window.alert(data.message); // Muestra la alerta con el mensaje que nos devuelve el servidor
+      alert(data.message); // Muestra la alerta con el mensaje que nos devuelve el servidor
 
       // Redirigimos al usuario al "home" y recargamos de nuevo la pagina para hacer definitiva la eliminacion
-      window.location.href = "/home";
+      navigate("/home");
     } catch (error) {
       // Mostramos si hubo un error por consola.
+      alert("Algo salio mal!!!");
       console.log(error.message);
     }
   };
 
   const handleUpdate = async () => {
-    navigate("/updategame", { state: { id: id } });
+    navigate("/updategame", { state: { id } });
   };
 
   return (
     <div className={styles.pageContainer}>
+      {/* Verifico si es un UUID o un ID, para ver si muestro algunos botones extra o no */}
+
       {videogame.id ? (
         <div className={styles.container}>
           <div className={styles.topButtons}>

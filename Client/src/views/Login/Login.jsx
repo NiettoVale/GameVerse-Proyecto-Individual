@@ -70,6 +70,11 @@ const Login = ({ setLoggedIn }) => {
     }
   };
 
+  const areAllFieldsFilled = () => {
+    const requiredFields = ["name", "password"];
+    return requiredFields.every((field) => loginData[field] !== "");
+  };
+
   return (
     <div>
       <div className={styles.containerLogin}>
@@ -109,7 +114,13 @@ const Login = ({ setLoggedIn }) => {
           </div>
 
           <div className={styles.buttonGroup}>
-            <button className={styles.loginButton} onClick={handleLogin}>
+            <button
+              className={`${styles.loginButton} ${
+                !areAllFieldsFilled() ? styles.disable : ""
+              }`}
+              onClick={handleLogin}
+              disabled={!areAllFieldsFilled()}
+            >
               Iniciar sesión
             </button>
             <Link to="/register">

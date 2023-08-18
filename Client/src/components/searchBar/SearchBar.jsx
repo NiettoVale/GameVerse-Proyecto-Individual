@@ -32,9 +32,11 @@ const SearchBar = () => {
         }
       } catch (error) {
         // Manejamos otro error que se pueda presentar.
-        alert("Error en el servidor");
+        alert("Algo salio mal!!!");
         console.log(error.message);
       }
+    } else {
+      alert("No ingreso nada!!!");
     }
   };
 
@@ -43,7 +45,7 @@ const SearchBar = () => {
       {/* Generamos un input para ingresar el nombre del juego a buscar:  */}
       <input
         type="text"
-        placeholder="Ingrese el nombre a buscar..."
+        placeholder="Ingrese el nombre del juego a buscar..."
         className={styles.searchInput}
         value={searchName}
         onChange={handleChange}

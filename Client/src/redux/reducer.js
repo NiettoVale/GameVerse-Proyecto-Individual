@@ -16,7 +16,6 @@ Creamos un estado global para almacenar lo siguiente:
   * los videojuegos de la Base de datos.
   * los generos obtenidos de la API.
   * los usuarios de la base de datos.
-  * la pagina actual.
   * el total de páginas.
 */
 const initialState = {
@@ -25,7 +24,6 @@ const initialState = {
   gamesByGenres: [],
   genres: [],
   users: [],
-  paginaActual: 1,
   totalPaginas: 1,
 };
 

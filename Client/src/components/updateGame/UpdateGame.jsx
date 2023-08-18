@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./UpdateGame.module.css";
-import validateGame from "./validationGame";
 
 const UpdateGame = () => {
   // usamos el hook "useLocation" para obtener informacion de la ruta en la que estamos.
@@ -20,7 +19,6 @@ const UpdateGame = () => {
   });
 
   // Creamos un estado local para almacenar los errores.
-  const [errors, setErrors] = useState({});
 
   // Creamos una funcion que manja los cambios en los inputs.
   const handleChange = (event) => {
@@ -32,14 +30,6 @@ const UpdateGame = () => {
       ...prevData,
       [name]: value,
     }));
-
-    // Seteamos los errores.
-    setErrors(
-      validateGame({
-        ...gameData,
-        [name]: value,
-      })
-    );
   };
 
   // Creamos una funcion que maneja el envio del form.
@@ -84,7 +74,6 @@ const UpdateGame = () => {
             value={gameData.name}
             onChange={handleChange}
           />
-          {errors.name && <p className={styles.error}>{errors.name}</p>}
 
           <label className={styles.label}>Plataformas:</label>
           <input
@@ -123,7 +112,6 @@ const UpdateGame = () => {
             max="10"
             step="1"
           />
-          {errors.rating && <p className={styles.error}>{errors.rating}</p>}
 
           <div className={styles.buttonContainer}>
             <button type="submit" className={styles.btnUpdate}>

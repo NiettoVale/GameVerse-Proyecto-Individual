@@ -21,21 +21,20 @@ const api_key = process.env.REACT_APP_API_KEY;
 export const obtenerVideojuegos = (pagina) => {
   return async (dispatch) => {
     try {
-      const page_size = 15; // Tamaño de página (cantidad de videojuegos por página)
       /*
       Realizamos una peticion a la API pasando la pagina actual que recibimos por parametro
       y el tamaño de la pagina, es decir la cantidad de viedoejuegos que queremos mostrar
       por página.
       */
       const { data } = await axios.get(
-        `${get_videogamesApi}${api_key}&page=${pagina}&page_size=${page_size}`
+        `${get_videogamesApi}${api_key}&page=${pagina}&page_size=15`
       );
 
       // Guardamos los videojuegos en una variable
       const videogames = data.results;
 
       // Calculamos el número total de páginas.
-      const totalPaginas = Math.ceil(100 / page_size);
+      const totalPaginas = Math.ceil(100 / 15);
 
       /*
       Despachamos una action pasandole como payload los juegos que almacenamos
@@ -59,7 +58,6 @@ export const obtenerVideojuegosDB = () => {
       Realizamos una peticion al backend para obtener los juegos creados:
       */
       const { data } = await axios(`${get_videogamesDb}`);
-      console.log(data.error);
 
       if (data.error) {
         alert(data.error);
@@ -74,7 +72,7 @@ export const obtenerVideojuegosDB = () => {
       dispatch({ type: OBTENER_VIDEOJUEGOS_DB, payload: modifiedData });
     } catch (error) {
       // Si hay algun error lo informamos:
-
+      alert("Algo salio mal");
       console.log(error.message);
     }
   };
@@ -110,7 +108,6 @@ export const sortvideogamesByRating = (ascendente) => {
   return { type: ORDENAR_POR_RATING, payload: ascendente };
 };
 
-// Video de DAI:
 export const filterGames = (genre) => {
   return { type: FILTER, payload: genre };
 };

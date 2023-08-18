@@ -10,7 +10,6 @@ import {
   filterGames,
   obtenerGeneros,
 } from "../../redux/actions";
-import { SET_PAGINA_ACTUAL } from "../../redux/action-types";
 
 const Home = () => {
   // Cremaos un estado local para almacenar la página actual y estado de carga.
@@ -44,8 +43,6 @@ const Home = () => {
   // Efecto para cargar datos y paginación cuando cambia la página actual
   useEffect(() => {
     setIsLoading(true);
-
-    dispatch({ type: SET_PAGINA_ACTUAL, payload: paginaActual });
 
     dispatch(obtenerVideojuegos(paginaActual)).then(() => {
       setIsLoading(false);
@@ -104,9 +101,11 @@ const Home = () => {
         >
           Anterior
         </button>
+
         <p className={styles.paginaInfo}>
           Página {paginaActual} de {totalPaginas}
         </p>
+
         <button
           onClick={() => paginar(Math.min(totalPaginas, paginaActual + 1))}
           className={styles.btnPaginado}

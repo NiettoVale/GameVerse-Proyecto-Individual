@@ -80,3 +80,7 @@ select {
 select option[value=""] {
   color: #211c33;
 }
+
+textarea {
+  resize: none;
+}

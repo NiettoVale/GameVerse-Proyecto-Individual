@@ -22,23 +22,15 @@ const postVideogame = async (
 
     // Para cada nombre de género, lo buscamos en la base de datos.
     for (const genreName of genres) {
-      const [genre] = await Genre.findOrCreate({
+      const genre = await Genre.findOne({
         where: { name: genreName },
       });
 
-      // Agregamos la relación de género al videojuego
       await newVideogame.addGenre(genre);
     }
-
-    // Obtenemos el videojuego recién creado con los géneros asociados
-    const videogameWithGenres = await Videogame.findByPk(newVideogame.id, {
-      include: Genre,
-    });
-
-    return videogameWithGenres;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-module.exports = postVideogame; // Exportar la función
+module.exports = postVideogame;

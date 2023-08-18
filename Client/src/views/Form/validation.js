@@ -11,7 +11,6 @@ const validateForm = (formData) => {
   } else if (formData.name.length > 50) {
     errors.name = "El nombre no debe superar los 50 caracteres.";
   }
-
   // Validamos si la descripción está presente y no contiene comillas dobles
   if (!formData.description) {
     errors.description = "La descripción es requerida.";
@@ -26,8 +25,12 @@ const validateForm = (formData) => {
     errors.background_image = "La URL de la imagen no es válida.";
   }
 
-  // Validamos si el rating es un número entre 1 y 10
-  if (isNaN(formData.rating) || formData.rating < 1 || formData.rating > 10) {
+  // Validamos si el rating es un número entre 1 y 10, ademas de que no sea un caracter.
+  if (isNaN(formData.rating)) {
+    errors.rating = "El rating debe ser un número no un caracter";
+  }
+
+  if (formData.rating < 1 || formData.rating > 10) {
     errors.rating = "El rating debe ser un número entre 1 y 10.";
   }
 

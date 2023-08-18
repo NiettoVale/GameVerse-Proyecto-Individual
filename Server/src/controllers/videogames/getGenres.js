@@ -21,9 +21,7 @@ const getGenres = async () => {
     }
 
     // Obtenemos todos los géneros de la base de datos.
-    const allGenres = await Genre.findAll({
-      attributes: ["name"],
-    });
+    const allGenres = await Genre.findAll();
 
     // Devolvemos un array de nombres de géneros.
     return allGenres.map((genre) => genre.name);
