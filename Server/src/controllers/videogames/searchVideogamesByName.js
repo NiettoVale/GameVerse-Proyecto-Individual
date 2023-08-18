@@ -24,8 +24,6 @@ const searchVideogamesByName = async (name) => {
       ],
     });
 
-    console.log(databaseResults);
-
     // Realizamos una petición a la API externa para obtener resultados adicionales:
     const { data } = await axios(`${NAME}=${name}${API_KEY_NAME}`);
 

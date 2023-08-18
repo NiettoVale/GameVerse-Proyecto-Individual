@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { obtenerVideojuegosDB } from "../../redux/actions";
+import { obtenerGeneros, obtenerVideojuegosDB } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Form.module.css";
 import validateForm from "./validation";
 
-const get_genres = process.env.REACT_APP_GET_GENRESDB;
 const post_videogames = process.env.REACT_APP_POST_VIDEOGAMES;
 
 const Form = () => {
   const gamesDataBase = useSelector((state) => state.videogamesDB);
+  const genresList = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
   // Creamos un estado local para almacenar la info del form.
@@ -25,7 +25,6 @@ const Form = () => {
   });
 
   // Creamos un estado local para almacenar los generos y los errores que puedan surgir.
-  const [genresList, setGenresList] = useState([]);
   const [formErrors, setFormErrors] = useState({});
 
   // Creamos una funcion que maneje los cambios de cada seccion en el form:
@@ -61,12 +60,7 @@ const Form = () => {
 
   // Utilizamos el hook useEffect.
   useEffect(() => {
-    // Realizamos una petición GET a la URL almacenada en la variable get_genres.
-    axios.get(`${get_genres}`).then((response) => {
-      // Cuando se recibe la respuesta de la petición,
-      // actualizamos el estado genresList con los datos recibidos.
-      setGenresList(response.data);
-    });
+    dispatch(obtenerGeneros());
     dispatch(obtenerVideojuegosDB());
   }, [dispatch]);
 

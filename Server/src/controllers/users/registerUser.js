@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "Faltan datos en la solicitud" });
     }
 
-    const existingUser = await User.findOne({ where: { name: name } });
+    const existingUser = await User.findOne({ where: { name } });
 
     if (existingUser) {
       return res.status(400).json({ message: "El usuario ya existe" });

@@ -24,6 +24,7 @@ const getGenres = async () => {
     const allGenres = await Genre.findAll();
 
     // Devolvemos un array de nombres de géneros.
+
     return allGenres.map((genre) => genre.name);
   } catch (error) {
     throw new Error(error.message);

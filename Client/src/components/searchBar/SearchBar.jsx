@@ -36,7 +36,7 @@ const SearchBar = () => {
         console.log(error.message);
       }
     } else {
-      alert("No ingreso nada!!!");
+      alert("No ingreso ningun nombre!!!");
     }
   };
 

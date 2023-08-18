@@ -71,7 +71,8 @@ const Detail = () => {
       alert(data.message); // Muestra la alerta con el mensaje que nos devuelve el servidor
 
       // Redirigimos al usuario al "home" y recargamos de nuevo la pagina para hacer definitiva la eliminacion
-      navigate("/home");
+      navigate("/createVideogames");
+      window.location.reload();
     } catch (error) {
       // Mostramos si hubo un error por consola.
       alert("Algo salio mal!!!");

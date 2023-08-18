@@ -58,18 +58,18 @@ export const obtenerVideojuegosDB = () => {
       Realizamos una peticion al backend para obtener los juegos creados:
       */
       const { data } = await axios(`${get_videogamesDb}`);
-
-      if (data.error) {
-        alert(data.error);
+      if (!data.error) {
+        // Cambiamos la propiedad "Genres" por "genres" y almacenamos el resultado en un una variable
+        const modifiedData = data.map((item) => {
+          const { Genres, ...rest } = item;
+          return { ...rest, genres: Genres };
+        });
+        // Despachamos la action pasandole como payload la info de los juegos de la base de datos.
+        dispatch({ type: OBTENER_VIDEOJUEGOS_DB, payload: modifiedData });
       }
 
-      // Cambiamos la propiedad "Genres" por "genres" y almacenamos el resultado en un una variable
-      const modifiedData = data.map((item) => {
-        const { Genres, ...rest } = item;
-        return { ...rest, genres: Genres };
-      });
-      // Despachamos la action pasandole como payload la info de los juegos de la base de datos.
-      dispatch({ type: OBTENER_VIDEOJUEGOS_DB, payload: modifiedData });
+      alert(data.error);
+      return;
     } catch (error) {
       // Si hay algun error lo informamos:
       alert("Algo salio mal");

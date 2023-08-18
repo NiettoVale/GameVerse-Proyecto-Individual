@@ -14,7 +14,7 @@ import {
 const Home = () => {
   // Cremaos un estado local para almacenar la página actual y estado de carga.
   const [paginaActual, setPaginaActual] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState();
 
   // Obtenemos los datos del estado global usando el hook useSelector.
   const videogames = useSelector((state) => state.videogames);
@@ -73,7 +73,7 @@ const Home = () => {
                 Ordenar Ascendente A-Z
               </button>
               <button onClick={() => handleSortByName(false)}>
-                Ordenar Descendente A-Z
+                Ordenar Descendente Z-A
               </button>
               <button onClick={() => handleSortByRating(true)}>
                 Ordenar Ascendente Rating

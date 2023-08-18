@@ -6,7 +6,7 @@ const loginUser = async (req, res) => {
     const { name, password } = req.body;
 
     // Buscar al usuario por el nombre de usuario en la base de datos
-    const user = await User.findOne({ where: { name: name } });
+    const user = await User.findOne({ where: { name } });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });

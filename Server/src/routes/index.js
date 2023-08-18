@@ -16,7 +16,7 @@ const deleteUser = require("../controllers/users/deleteUser");
 router.get("/videogames", async (_req, res) => {
   try {
     const videogames = await getAllVideogamesDB();
-    return res.status(202).json(videogames);
+    return res.status(200).json(videogames);
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
@@ -58,7 +58,7 @@ router.post("/videogames", async (req, res) => {
 
     return res.status(200).send("Videojuego creado con éxito!!!");
   } catch (error) {
-    return res.status(400).send({ error: error.message });
+    return res.status(500).send({ error: error.message });
   }
 });
 

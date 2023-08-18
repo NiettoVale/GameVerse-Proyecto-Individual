@@ -17,7 +17,7 @@ const getVideogameById = async (idVideogame) => {
     if (isUUID) {
       // Realizamos la busquyeda.
       videogame = await Videogame.findByPk(idVideogame, {
-        include: { model: Genre, as: "Genres", attributes: ["name"] },
+        include: { model: Genre, attributes: ["name"] },
       });
       // Si existe el juego, cambiamos la propiedad "Genres" a "genres".
       if (videogame) {

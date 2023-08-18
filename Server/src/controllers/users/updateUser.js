@@ -13,7 +13,6 @@ const updateUser = async (req, res) => {
     }
     if (password !== undefined && password !== "") {
       const hashPassword = await encrypt(password);
-
       updateUser.password = hashPassword;
     }
 

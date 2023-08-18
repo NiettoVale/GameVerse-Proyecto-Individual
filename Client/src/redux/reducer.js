@@ -98,10 +98,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER:
+      // Filtramos los videojuegos según los géneros seleccionados en el payload
       const allVideogamesFiltered = state.videogames.filter((videogame) => {
+        // Utilizamos .some() para verificar si al menos un género del videojuego está en el payload
         return videogame.genres.some((genre) => payload.includes(genre.name));
       });
 
+      // Devolver el estado actualizado con los videojuegos filtrados por género
       return {
         ...state,
         gamesByGenres: allVideogamesFiltered,
