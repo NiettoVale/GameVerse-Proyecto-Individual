@@ -1,5 +1,4 @@
 // action.js
-import axios from "axios";
 import {
   OBTENER_VIDEOJUEGOS,
   ORDENAR_POR_NOMBRE,
@@ -10,6 +9,7 @@ import {
   FILTER,
   GET_USERS,
 } from "./action-types";
+import Swal from "sweetalert2";
 
 const get_videogamesDb = process.env.REACT_APP_GET_VIDEOGAMESDB;
 const get_genresDB = process.env.REACT_APP_GET_GENRESDB;
@@ -21,30 +21,26 @@ const api_key = process.env.REACT_APP_API_KEY;
 export const obtenerVideojuegos = (pagina) => {
   return async (dispatch) => {
     try {
-      /*
-      Realizamos una peticion a la API pasando la pagina actual que recibimos por parametro
-      y el tamaño de la pagina, es decir la cantidad de viedoejuegos que queremos mostrar
-      por página.
-      */
-      const { data } = await axios.get(
+      const response = await fetch(
         `${get_videogamesApi}${api_key}&page=${pagina}&page_size=15`
       );
 
-      // Guardamos los videojuegos en una variable
-      const videogames = data.results;
+      if (!response.ok) {
+        throw new Error("Error al obtener los videojuegos");
+      }
 
-      // Calculamos el número total de páginas.
+      const data = await response.json();
+      const videogames = data.results;
       const totalPaginas = Math.ceil(100 / 15);
 
-      /*
-      Despachamos una action pasandole como payload los juegos que almacenamos
-      y el total de paginas
-      */
       dispatch({ type: OBTENER_VIDEOJUEGOS, payload: videogames });
       dispatch({ type: SET_TOTAL_PAGINAS, payload: totalPaginas });
     } catch (error) {
-      // Si hay algun error lo informamos:
-      alert("Error al obtener los videojuegos");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
       console.log(error.message);
     }
   };
@@ -54,25 +50,33 @@ export const obtenerVideojuegos = (pagina) => {
 export const obtenerVideojuegosDB = () => {
   return async (dispatch) => {
     try {
-      /*
-      Realizamos una peticion al backend para obtener los juegos creados:
-      */
-      const { data } = await axios(`${get_videogamesDb}`);
+      const response = await fetch(get_videogamesDb);
+
+      if (!response.ok) {
+        throw new Error("Algo salió mal");
+      }
+
+      const data = await response.json();
       if (!data.error) {
-        // Cambiamos la propiedad "Genres" por "genres" y almacenamos el resultado en un una variable
         const modifiedData = data.map((item) => {
           const { Genres, ...rest } = item;
           return { ...rest, genres: Genres };
         });
-        // Despachamos la action pasandole como payload la info de los juegos de la base de datos.
-        dispatch({ type: OBTENER_VIDEOJUEGOS_DB, payload: modifiedData });
-      }
 
-      alert(data.error);
-      return;
+        dispatch({ type: OBTENER_VIDEOJUEGOS_DB, payload: modifiedData });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: data.error,
+        });
+      }
     } catch (error) {
-      // Si hay algun error lo informamos:
-      alert("Algo salio mal");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
       console.log(error.message);
     }
   };
@@ -80,22 +84,45 @@ export const obtenerVideojuegosDB = () => {
 
 export const obtenerGeneros = () => {
   return async (dispatch) => {
-    /*
-    Realizamos una peticion a la API para obtener los generos
-    y despachamos la action pasandole como payload el resultado
-    de la peticion.
-    */
-    const { data } = await axios(`${get_genresDB}`);
-    dispatch({ type: OBTENER_GENEROS, payload: data });
+    try {
+      const response = await fetch(get_genresDB);
+
+      if (!response.ok) {
+        throw new Error("Error al obtener los géneros");
+      }
+
+      const data = await response.json();
+      dispatch({ type: OBTENER_GENEROS, payload: data });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
+      console.log(error.message);
+    }
   };
 };
 
 export const obtenerUsuarios = () => {
   return async (dispatch) => {
-    const response = await fetch(get_users);
-    const responseData = await response.json();
+    try {
+      const response = await fetch(get_users);
 
-    dispatch({ type: GET_USERS, payload: responseData });
+      if (!response.ok) {
+        throw new Error("Error al obtener los usuarios");
+      }
+
+      const responseData = await response.json();
+      dispatch({ type: GET_USERS, payload: responseData });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
+      console.log(error.message);
+    }
   };
 };
 

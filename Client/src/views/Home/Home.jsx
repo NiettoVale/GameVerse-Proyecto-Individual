@@ -62,37 +62,6 @@ const Home = () => {
       {/* Barra de navegación */}
       <NavBar />
 
-      {/* Filtros */}
-      <div className={styles.filtros}>
-        <div className={styles.filtrosDropdown}>
-          <button className={styles.filtrosBtn}>Filtros</button>
-          <div className={styles.filtrosContent}>
-            <div className={styles.filtrosOrdenamiento}>
-              <h3>Ordenamiento</h3>
-              <button onClick={() => handleSortByName(true)}>
-                Ordenar Ascendente A-Z
-              </button>
-              <button onClick={() => handleSortByName(false)}>
-                Ordenar Descendente Z-A
-              </button>
-              <button onClick={() => handleSortByRating(true)}>
-                Ordenar Ascendente Rating
-              </button>
-              <button onClick={() => handleSortByRating(false)}>
-                Ordenar Descendente Rating
-              </button>
-
-              <h3>Géneros</h3>
-              {genres.map((gen) => (
-                <button key={gen} onClick={() => handleFilterGenres(gen)}>
-                  {gen}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Paginación */}
       <div className={styles.paginado}>
         <button

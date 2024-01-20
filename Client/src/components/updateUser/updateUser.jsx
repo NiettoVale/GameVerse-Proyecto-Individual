@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import styles from "./UpdateUser.module.css";
 
 const UpdateUser = () => {
@@ -22,7 +23,6 @@ const UpdateUser = () => {
     try {
       event.preventDefault();
 
-      // Realizar la petición al servidor
       const response = await fetch(`http://localhost:3001/users/${id.id}`, {
         method: "PUT",
         headers: {
@@ -34,12 +34,27 @@ const UpdateUser = () => {
       const responseData = await response.json();
 
       if (response.status === 200) {
-        alert(responseData.message);
+        // Use SweetAlert2 for success messages
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: responseData.message,
+        });
       } else if (response.status === 500) {
-        alert(responseData.message);
+        // Use SweetAlert2 for server error messages
+        Swal.fire({
+          icon: "error",
+          title: "Error del servidor",
+          text: responseData.message,
+        });
       }
     } catch (error) {
-      alert("Algo salio mal!!!");
+      // Use SweetAlert2 for general errors
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Algo salió mal!!!",
+      });
       console.log(error);
     }
   };
@@ -68,8 +83,6 @@ const UpdateUser = () => {
           className={styles.inputUpdate}
         />
         <div className={styles.buttonContainer}>
-          {" "}
-          {/* Contenedor para los botones */}
           <button onClick={handleSubmit} className={styles.buttonUpdate}>
             Actualizar
           </button>

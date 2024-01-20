@@ -5,6 +5,7 @@ import { obtenerGeneros, obtenerVideojuegosDB } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Form.module.css";
 import validateForm from "./validation";
+import Swal from "sweetalert2";
 
 const post_videogames = process.env.REACT_APP_POST_VIDEOGAMES;
 
@@ -13,7 +14,6 @@ const Form = () => {
   const genresList = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
-  // Creamos un estado local para almacenar la info del form.
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -24,19 +24,11 @@ const Form = () => {
     genres: [],
   });
 
-  // Creamos un estado local para almacenar los generos y los errores que puedan surgir.
   const [formErrors, setFormErrors] = useState({});
 
-  // Creamos una funcion que maneje los cambios de cada seccion en el form:
   const handleChange = (event) => {
-    // Destructuramos las propiedades de target.
     const { name, value, selectedOptions } = event.target;
 
-    /*
-    Verificamos si el name pertenece a "genres",
-    si es asi generamos un array con los generos y
-    seteamos su valor.
-    */
     if (name === "genres") {
       const selectedGenres = Array.from(
         selectedOptions,
@@ -48,29 +40,24 @@ const Form = () => {
         [name]: selectedGenres,
       }));
     } else {
-      // En caso de que sea otro input, setamos su valor.
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
-    // seteamos los posibles errores que surjan.
+
     setFormErrors(validateForm({ ...formData, [name]: value }));
   };
 
-  // Utilizamos el hook useEffect.
   useEffect(() => {
     dispatch(obtenerGeneros());
     dispatch(obtenerVideojuegosDB());
   }, [dispatch]);
 
-  // Creamos una funcion la cual se va a ejecutar cuando se envie el form.
   const handleSubmit = async (event) => {
     try {
-      // Evitamos el comportamiento por defecto del form.
       event.preventDefault();
 
-      // Creamos un nuevo juego parseando la info del rating
       const newVideogame = {
         ...formData,
         rating: parseFloat(formData.rating),
@@ -80,25 +67,34 @@ const Form = () => {
 
       gamesDataBase.forEach(({ name }) => {
         if (name === formData.name) {
-          alert("Ya hay un juego con ese nombre");
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ya hay un juego con ese nombre",
+          });
           exist = true;
         }
       });
 
       if (!exist) {
-        // Realizamos una petición de tipo post al backend para crear el juego.
         const { data } = await axios.post(`${post_videogames}`, newVideogame);
-        alert(data);
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: data,
+        });
       }
     } catch (error) {
-      alert("Hubo un error!!!");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un error!!!",
+      });
       console.log(error.message);
     }
   };
 
-  // Función que verifica si todos los campos requeridos están llenos.
   const areAllFieldsFilled = () => {
-    // Lista de campos que se requieren llenar.
     const requiredFields = [
       "name",
       "description",
@@ -109,8 +105,6 @@ const Form = () => {
       "genres",
     ];
 
-    // La función every() verifica si todas las entradas cumplen la condición dada.
-    // En este caso, se verifica si todos los campos requeridos tienen contenido en formData.
     const isGenreNotEmpty = formData["genres"].length > 0;
 
     return requiredFields.every((field) => {
@@ -234,10 +228,8 @@ const Form = () => {
 
         <button
           className={`${styles.createBtn} ${
-            // Se agrega la clase 'disabled' si no todos los campos requeridos están llenos.
             !areAllFieldsFilled() ? styles.disabled : ""
           }`}
-          // El botón se desactiva si no todos los campos requeridos están llenos.
           disabled={!areAllFieldsFilled()}
         >
           Crear Juego
